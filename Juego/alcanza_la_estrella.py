@@ -29,36 +29,36 @@ preguntas = [
 
     {
         'pregunta': '¿Cuál es el lugar más frío de la Tierra??',
-        'respuestas': ['a) Antártida', 'b) Finlandia.', 'c) Alaska'],
+        'respuestas': ['a) Antártida', 'b) Finlandia', 'c) Alaska'],
         'respuesta_correcta': 'a'
     },
 
 
     {
         'pregunta': '¿Cuál es el organo que consume más energía en el cuerpo humano??',
-        'respuestas': ['a) Corazón', 'b) Cerebro.', 'c) Pancreas'],
+        'respuestas': ['a) Corazón', 'b) Cerebro', 'c) Pancreas'],
         'respuesta_correcta': 'b'
     },
 
 
     {
         'pregunta': '¿Cuál es el país más pequeño del mundo?',
-        'respuestas': ['a) Nauru', 'b) Mónaco.', 'c) Vaticano'],
+        'respuestas': ['a) Nauru', 'b) Mónaco', 'c) Vaticano'],
         'respuesta_correcta': 'c'
     },
 
 
 
     {
-        'pregunta': '¿Cuál es la formula del hierro??',
-        'respuestas': ['a) Fe2O3', 'b) Fe4O5.', 'c) H2O'],
+        'pregunta': '¿Cuál es la formula quimica del hierro??',
+        'respuestas': ['a) Fe', 'b) CO2.', 'c) H2O'],
         'respuesta_correcta': 'a'
     },
 
 
 
     {
-        'pregunta': '¿Quién pinto la monaliza??',
+        'pregunta': '¿Quien pinto la Monna Lisa??',
         'respuestas': ['a) Pablo picasso', 'b) Van Gogh.', 'c) Leonardo Da Vinci'],
         'respuesta_correcta': 'c'
     },
@@ -66,38 +66,38 @@ preguntas = [
 
 
     {
-        'pregunta': '¿Qué planeta del sistema solar tiene más lunas??',
-        'respuestas': ['a) Júpiter', 'b) Marte.', 'c) Saturno'],
+        'pregunta': '¿Qué planeta del sistema solar tiene mas lunas?',
+        'respuestas': ['a) Jupiter', 'b) Marte.', 'c) Saturno'],
         'respuesta_correcta': 'a'
     },
 
 
     {
-        'pregunta': '¿Quién fue el auténtico padre de la electricidad??',
-        'respuestas': ['a) Thomas Edison', 'b) Nikola Tezla.', 'c) Albert Einstein'],
+        'pregunta': '¿Quien fue el auténtico padre de la electricidad?',
+        'respuestas': ['a) Thomas Edison', 'b) Nikola Tesla', 'c) Albert Einstein'],
         'respuesta_correcta': 'b'
     },
 
     {
-        'pregunta': '¿Qué colores tiene la bandera de Paraguay, en orden de arriba hacía abajo??',
-        'respuestas': ['a)Rojo,azúl y blanco ', 'b) blanco, rojo y azúl.', 'c)Rojo,blanco y azúl'],
+        'pregunta': '¿Qué colores tiene la bandera de Paraguay, en orden de arriba hacia abajo?',
+        'respuestas': ['a)Rojo, azul y blanco ', 'b) blanco, rojo y azul.', 'c)Rojo, blanco y azul'],
         'respuesta_correcta': 'c'
     },
 
 
     {
-        'pregunta': '¿En qué año fue la Revolución Francesa?',
+        'pregunta': '¿En qué año fue la revolucion francesa?',
         'respuestas': ['a) 1789', 'b) 1815', 'c) 1848'],
         'respuesta_correcta': 'a'
     },
     {
-        'pregunta': '¿Cuál es el metal más pesado?',
+        'pregunta': '¿Cual es el metal más pesado?',
         'respuestas': ['a) Hierro', 'b) Plomo', 'c) Oro'],
         'respuesta_correcta': 'b'
     },
     {
-        'pregunta': 'En que año se fundo la ciudad de Medellin?',
-        'respuestas': ['a) 7809 a.c', 'b) 1508', 'c) 1650'],
+        'pregunta': '¿En que año se fundo la ciudad de Medellin?',
+        'respuestas': ['a) 7809 a.c', 'b) 2023', 'c) 1650'],
         'respuesta_correcta': 'c'
     },
     {
@@ -113,7 +113,7 @@ preguntas = [
     {
         'pregunta': '¿Cual es el color que representa la esperanza?',
         'respuestas': ['a) si', 'b) negro', 'c) verde'],
-        'respuesta_correcta': 'a'
+        'respuesta_correcta': 'c'
     },
     {
         'pregunta': '¿Cuantas patas tiene una araña?',
@@ -179,28 +179,34 @@ while True:
     print(f'Turno de {jugador1["nombre"]}')
     lanzamiento = lanzar_dado()
     print(f'Lanzamiento: {lanzamiento}')
-    jugador1['posicion'] += lanzamiento
-    if jugador1['posicion'] >= 20:
-        print(f'{jugador1["nombre"]} ha ganado!')
-        print(tablero1)
-        break
     if hacer_pregunta():
         jugador1['aciertos'] += 1
+        jugador1['posicion'] += lanzamiento
+        if jugador1['posicion'] > 20:
+            jugador1['posicion'] = 20
     else:
         jugador1['posicion'] = aplicar_castigo(jugador1['posicion'], 2)
     print(f'Posición actual: {jugador1["posicion"]}, Aciertos: {jugador1["aciertos"]}')
+    if jugador1['posicion'] >= 20:
+        jugador1['posicion'] = 20
+        print(f'{jugador1["nombre"]} ha ganado!')
+        print(tablero1)
+        break
 
     # Turno del jugador 2
     print(f'Turno de {jugador2["nombre"]}')
     lanzamiento = lanzar_dado()
     print(f'Lanzamiento: {lanzamiento}')
-    jugador2['posicion'] += lanzamiento
-    if jugador2['posicion'] >= 20:
-        print(f'{jugador2["nombre"]} ha ganado!')
-        print(tablero2)
-        break
     if hacer_pregunta():
         jugador2['aciertos'] += 1
+        jugador2['posicion'] += lanzamiento
+        if jugador2['posicion'] > 20:
+            jugador2['posicion'] = 20
     else:
         jugador2['posicion'] = aplicar_castigo(jugador2['posicion'], 2)
     print(f'Posición actual: {jugador2["posicion"]}, Aciertos: {jugador2["aciertos"]}')
+    if jugador2['posicion'] >= 20:
+        jugador2['posicion'] = 20
+        print(f'{jugador2["nombre"]} ha ganado!')
+        print(tablero2)
+        break
